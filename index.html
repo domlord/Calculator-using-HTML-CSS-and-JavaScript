@@ -1,38 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Calculator</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body onload="load()">
-    <div id="calculator">
-        <!-- Screen and clear key -->
-        <div class="top">
-            <span id="clear">C</span>
-            <div id="screen"></div>
-        </div>
+<html>
+  <head>
+    <title>JavaScript Calculator</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.js"
+      integrity="sha512-BbVEDjbqdN3Eow8+empLMrJlxXRj5nEitiCAK5A1pUr66+jLVejo3PmjIaucRnjlB0P9R3rBUs3g5jXc8ti+fQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"
+      integrity="sha512-iphNRh6dPbeuPGIrQbCdbBF/qcqadKWLa35YPVfMZMHBSI6PLJh1om2xCTWhpVpmUyb4IvVS9iYnnYMkleVXLA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
-        <div class="keys">
-            <!-- operators and other keys -->
-            <span>7</span>
-            <span>8</span>
-            <span>9</span>
-            <span class="operator">+</span>
-            <span>4</span>
-            <span>5</span>
-            <span>6</span>
-            <span class="operator">-</span>
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span class="operator">÷</span>
-            <span>0</span>
-            <span>.</span>
-            <span class="eval">=</span>
-            <span class="operator">x</span>
-        </div>
-    </div>
-    <script type="text/javascript" src="js/index.js"></script>
-</body>
+    <!-- For styling -->
+    <style>
+      table {
+        border: 1px solid black;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      input[type="button"] {
+        width: 100%;
+        padding: 20px 40px;
+        background-color: green;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+      }
+
+      input[type="text"] {
+        padding: 20px 30px;
+        font-size: 24px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Use Table to Create Calculator Structure Design -->
+    <table id="calcu">
+      <tr>
+        <td colspan="3"><input type="text" id="result" /></td>
+        <td><input type="button" value="c" onclick="clr()" /></td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            type="button"
+            value="E"
+            onclick="dis('12')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="L1"
+            onclick="dis('11.25')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="L2"
+            onclick="dis('0.75')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="/"
+            onclick="dis('/')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            type="button"
+            value="TR"
+            onclick="dis('3.25')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="FN"
+            onclick="dis('8.75')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="6"
+            onclick="dis('6')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="*"
+            onclick="dis('*')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            type="button"
+            value="7"
+            onclick="dis('7')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="8"
+            onclick="dis('8')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="9"
+            onclick="dis('9')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="-"
+            onclick="dis('-')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            type="button"
+            value="0"
+            onclick="dis('0')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+        <td>
+          <input
+            type="button"
+            value="."
+            onclick="dis('.')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+
+        <!-- solve function call function solve to evaluate value -->
+        <td><input type="button" value="=" onclick="solve()" /></td>
+
+        <td>
+          <input
+            type="button"
+            value="+"
+            onclick="dis('+')"
+            onkeydown="myFunction(event)"
+          />
+        </td>
+      </tr>
+      <script type="text/javascript" src="js/index.js"></script>
+    </table>
+  </body>
 </html>

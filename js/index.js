@@ -1,77 +1,46 @@
-/**
- * Created by chuandong on 15/11/27.
- */
+// Function that display value
+function dis(val) {
+  document.getElementById("result").value += val;
+}
 
-function load() {
-  var btns = document.querySelectorAll("#calculator span");
-  var operators = ["+", "-", "x", "÷"];
-  var inputScreen = document.querySelector("#screen");
-  var btnValue;
-  var input;
+function myFunction(event) {
+  if (
+    event.key == "E" ||
+    event.key == "L1" ||
+    event.key == "L2" ||
+    event.key == "TR" ||
+    event.key == "FN" ||
+    event.key == "5" ||
+    event.key == "6" ||
+    event.key == "7" ||
+    event.key == "8" ||
+    event.key == "9" ||
+    event.key == "+" ||
+    event.key == "-" ||
+    event.key == "*" ||
+    event.key == "/"
+  )
+    document.getElementById("result").value += event.key;
+}
 
-  for (var i = 0; i < btns.length; i++) {
-    var decimalAdded = false; // Flag used to avoid two decimal
-
-    btns[i].addEventListener("click", function() {
-      btnValue = this.innerHTML;
-      input = inputScreen.innerHTML;
-
-      switch (btnValue) {
-        case "C":
-          inputScreen.innerHTML = "";
-          decimalAdded = false;
-          break;
-        case "=":
-          // Last char of string
-          var lastChar = input[input.length - 1];
-
-          // Replace x to *, + to / which could be calculated in eval
-          input = input.replace(/x/g, "*").replace(/÷/g, "/");
-
-          // Checking the last character of the input.
-          // If it's an operator or a decimal, remove it
-          // /.$/ means last char in regex
-          if (operators.indexOf(lastChar) > -1 || lastChar == ".")
-            input = input.replace(/.$/, "");
-
-          if (input) {
-            // If the argument is an expression, eval() evaluates the expression.
-            // If the argument is one or more JavaScript statements, eval() executes the statements.
-            inputScreen.innerHTML = eval(input);
-          }
-          decimalAdded = false;
-          break;
-        case ".":
-          if (!decimalAdded) {
-            inputScreen.innerHTML += btnValue;
-            decimalAdded = true;
-          }
-          break;
-        case "+":
-        case "-":
-        case "x":
-        case "÷":
-          // Last char of string
-          var lastChar = input[input.length - 1];
-
-          // Only add operator if input is not empty and there is no operator at the last
-          if (input != "" && operators.indexOf(lastChar) == -1)
-            inputScreen.innerHTML += btnValue;
-          // Allows minus if the string is empty. The first number could be under zero
-          else if (input == "" && btnValue == "-")
-            inputScreen.innerHTML += btnValue;
-
-          // Allows to represent the last operation
-          if (operators.indexOf(lastChar) > -1 && input.length > 1) {
-            inputScreen.innerHTML = input.replace(/.$/, btnValue);
-          }
-          decimalAdded = false;
-          break;
-        default:
-          inputScreen.innerHTML += btnValue;
-          decimalAdded = false;
-          break;
-      }
-    });
+var cal = document.getElementById("calcu");
+cal.onkeyup = function (event) {
+  if (event.keyCode === 13) {
+    console.log("Enter");
+    let x = document.getElementById("result").value;
+    console.log(x);
+    solve();
   }
+};
+
+// Function that evaluates the digit and return result
+function solve() {
+  let x = document.getElementById("result").value;
+  let y = math.evaluate(x);
+  document.getElementById("result").value = y;
+}
+
+// Function that clear the display
+function clr() {
+  document.getElementById("result").value = "";
 }
